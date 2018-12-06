@@ -88,13 +88,20 @@ clusvolvox=numel(find(clusfixnii.img)); %volume of cluster
     maxtrkval=max(mytrkniiimg);%max trk density through M1 network
     
     tdensity=[10 20 30 40 50 60 70 80 90 95 98]
+    trkdthresholds=prctile(mytrkniiimg(find(mytrkniiimg)),tdensity)
+    temp=sort(mytrkniiimg(find(mytrkniiimg))); 
+    myindex=floor(numel(temp).*tdensity./100);
+    temp(myindex)
+    
     for i=1:numel(tdensity)
-        tempthresh=prctile(mytrkniiimg(find(mytrkniiimg)),tdensity(i));
-        trkdthresholds(i)=tempthresh
-        numvoxabovethresh(i)=numel(find(mytrkintersectM1>tempthresh));
+        %tempthresh=prctile(mytrkniiimg(find(mytrkniiimg)),tdensity(i));
+        numvoxabovethresh(i)=numel(find(mytrkintersectM1>trkdthresholds(i)));
         pvt{i}=['pt' num2str(tdensity(i))];
         vt{i}=['t' num2str(tdensity(i))];
     end
+    
+    
+
     
     %the percentage of luster voxels above tdensity percentile
     %90% of voxels in M1 are in 95% of tract density in M1 network
