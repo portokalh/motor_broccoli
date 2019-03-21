@@ -35,7 +35,7 @@ clusvolvox=numel(find(clusfixnii.img)); %volume of cluster
     res=reshape(myfixnii.img,s(1)*s(2)*s(3),1);
     [countfix,centersfix]=hist(res,myfixregions);
     
-%find which labels from ou atlas did we fall upon ; how much do our clusters cover these labels   
+%find which labels from our atlas did we fall upon ; how much do our clusters cover these labels   
     [data,myabbrev] = xlsread('/Users/alex/AlexBadea_MyPapers/motor_learning/PLOSONE/revision/CHASS_Annotated.xlsx','B2:B333');
     [data,controlvol_vox] = xlsread('/Users/alex/AlexBadea_MyPapers/motor_learning/PLOSONE/revision/CHASS_Annotated.xlsx','S2:S333');
     r1=myabbrev(centersfix(2:end)); %regions with coverage from clusters from fixed data
@@ -47,7 +47,7 @@ clusvolvox=numel(find(clusfixnii.img)); %volume of cluster
     s=size(myrefnii.img);
     res=reshape(myrefnii.img,s(1)*s(2)*s(3),1);
     [countref,centersref]=hist(res,myfixregions);
-    r3ref=countref(2:end)' ;%size of cluster intersection with region in voxels
+    r3ref=countref(2:end)' ;%size of region in voxels
     r4ref=100*r2./r3ref ;
        
     %% of the tract densities
